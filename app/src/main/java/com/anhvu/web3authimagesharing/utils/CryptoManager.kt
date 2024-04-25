@@ -26,7 +26,7 @@ class CryptoManager {
         val file = File(photoDir, "encfile" + ".png")
         val fos = FileOutputStream(file.path)
 
-        val sks = SecretKeySpec("MyDifficultPassw".toByteArray(), ALGORITHM)
+        val sks = SecretKeySpec(PASSWORD.toByteArray(), ALGORITHM)
 
         val cipher = Cipher.getInstance(ALGORITHM)
 
@@ -64,9 +64,9 @@ class CryptoManager {
 
         val fos = FileOutputStream(decFile.path)
 
-        val sks = SecretKeySpec("MyDifficultPassw".toByteArray(), "AES")
+        val sks = SecretKeySpec(PASSWORD.toByteArray(), ALGORITHM)
 
-        val cipher = Cipher.getInstance("AES")
+        val cipher = Cipher.getInstance(ALGORITHM)
 
         cipher.init(Cipher.DECRYPT_MODE, sks)
 
@@ -86,8 +86,6 @@ class CryptoManager {
 
     companion object {
         private const val ALGORITHM = KeyProperties.KEY_ALGORITHM_AES
-        private const val BLOCK_MODE = KeyProperties.BLOCK_MODE_CBC
-        private const val PADDING = KeyProperties.ENCRYPTION_PADDING_PKCS7
-        private const val TRANSFORMATION = KeyProperties.ENCRYPTION_PADDING_PKCS7
+        private const val PASSWORD = "MyDifficultPassw"
     }
 }
